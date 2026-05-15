@@ -39,11 +39,6 @@ class TeamController extends Controller
         $team = new Team;
         $team->name=$request->nombre;
         $team->created_date=$request->fecha_creada;
-        /*if ($team->is_active== 'Si') {
-            $team->is_active=True;
-        }else{
-            $team->is_active=False;
-        }*/
         $team->is_active=$request->esta_activo;
         $team->save();
         return redirect()->route('teams.index');
@@ -69,7 +64,7 @@ class TeamController extends Controller
     public function edit($id)
     {
         $team = Team::find($id);
-        return redirect('teams.edit', compact('teams'));
+        return view ('teams.edit', compact('team'));
     }
 
     /**
